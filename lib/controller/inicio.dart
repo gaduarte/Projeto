@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/controller/cadastro.dart';
-import 'package:flutter_application_1/controller/login.dart';
-import 'package:flutter_application_1/model/ItemModel.dart';
-import 'dart:async';
-import 'package:path/path.dart';
-
+import 'package:flutter_application_1/controller/Cadastro/cadastro.dart';
+import 'package:flutter_application_1/controller/Login/login.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
@@ -14,154 +10,125 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.blueGrey, Colors.grey],
+          ),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              alignment: Alignment.center,
+              child: Image.asset('../assets/images/LOCAPP.png', width: 100, height: 100),
+            ),
+            SizedBox(height: 24),
             Text(
               'LOCAPP',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 36,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             Text(
-              'Welcome.',
+              'Welcome!',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.white,
               ),
             ),
+            SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Center(
-                      child: Container(
-                        width: 150,
-                        height: 130,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginPage(title: '')),
-                            );
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage(title: '')),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.hovered)) {
+                            return Colors.lightBlue;
                           }
+                          return Colors.green;
                         },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.hovered)) {
-                                return Colors.blue;
-                              }
-                              return Colors.white;
-                            },
-                          ),
-                          minimumSize: MaterialStateProperty.all<Size>(Size(150, 50)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.email, color: Colors.black),
-                            SizedBox(width: 8),
-                            Text(
-                              'CONTINUE WITH EMAIL',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
+                      ),
+                      minimumSize: MaterialStateProperty.all<Size>(Size(200, 50)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.hovered)) {
-                                return Colors.blue;
-                              }
-                              return Colors.white;
-                            },
-                          ),
-                          minimumSize: MaterialStateProperty.all<Size>(Size(150, 50)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.email, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text(
+                          'CONTINUE WITH EMAIL',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.g_mobiledata, color: Colors.black),
-                            SizedBox(width: 8),
-                            Text(
-                              'CONTINUE WITH GOOGLE',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CadastroPage(title: '',)),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                        (Set<WidgetState> states) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return Colors.lightBlue;
+                          }
+                          return Colors.orange;
+                        },
+                      ),
+                      minimumSize: WidgetStateProperty.all<Size>(Size(200, 50)),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.hovered)){
-                                return Colors.blue;
-                              }
-                              return Colors.white;
-                            },
-                          ),
-                          minimumSize: MaterialStateProperty.all<Size>(Size(150, 50)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.person, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text(
+                          'REGISTER',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.apple, color: Colors.black),
-                            SizedBox(width: 8),
-                            Text(
-                              'CONTINUE WITH APPLE',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-                     Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(
-                          'By continuing you agree to the Terms of Service.',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 32),
+                  Text(
+                    'By continuing you agree to the Terms of Service.',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
