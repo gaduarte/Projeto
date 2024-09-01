@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/controller/Cadastro/cadastro.dart';
-import 'package:flutter_application_1/controller/Login/login.dart';
+import 'package:flutter_application_1/controller/auth/cadastro.dart';
+import 'package:flutter_application_1/controller/auth/login.dart';
+
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
@@ -57,16 +58,16 @@ class _InicioState extends State<Inicio> {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered)) {
+                      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                        (Set<WidgetState> states) {
+                          if (states.contains(WidgetState.hovered)) {
                             return Colors.lightBlue;
                           }
                           return Colors.green;
                         },
                       ),
-                      minimumSize: MaterialStateProperty.all<Size>(Size(200, 50)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      minimumSize: WidgetStateProperty.all<Size>(Size(200, 50)),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
